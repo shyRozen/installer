@@ -29,7 +29,7 @@ resource "vsphere_virtual_machine" "vm" {
   //}
   cdrom {
     datastore_id = var.datastore_id
-    path         = "ISO/rhcos-410.84.202201251210-0-live.x86_64_last1.iso"
+    path         = var.iso_file
   }
 
 
