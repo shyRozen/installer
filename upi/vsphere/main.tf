@@ -240,7 +240,7 @@ module "control_plane_vm" {
   guest_id              = data.vsphere_virtual_machine.template.guest_id
   template_uuid         = data.vsphere_virtual_machine.template.id
   disk_thin_provisioned = data.vsphere_virtual_machine.template.disks[0].thin_provisioned
-
+  iso_file = var.iso_file
   cluster_domain = var.cluster_domain
   machine_cidr   = var.machine_cidr
 
