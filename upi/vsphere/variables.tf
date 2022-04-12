@@ -140,6 +140,11 @@ variable "control_plane_num_cpus" {
   type    = string
   default = "8"
 }
+
+variable "iso_file" {
+  type = string
+}
+
 /*
 
 //////////
