@@ -59,3 +59,7 @@ variable "dns_addresses" {
   type = list(string)
 }
 
+variable "iso_file" {
+  type = string
+}
+
