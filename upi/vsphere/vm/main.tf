@@ -25,7 +25,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   clone {
-    template_uuid = "sno_template"
+    template_uuid = "sno-template"
   }
   
   cdrom {
