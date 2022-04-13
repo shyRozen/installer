@@ -24,9 +24,10 @@ resource "vsphere_virtual_machine" "vm" {
     thin_provisioned = var.disk_thin_provisioned
   }
 
-  //clone {
-  //  template_uuid = var.template_uuid
-  //}
+  clone {
+    template_uuid = "sno_template"
+  }
+  
   cdrom {
     datastore_id = var.datastore_id
     path         = var.iso_file
