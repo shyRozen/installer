@@ -25,7 +25,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   clone {
-    template_uuid = "rhcos-410.84.202112040202-0-vmware.x86_64"
+    template_uuid = var.template_uuid
   }
   
   cdrom {
