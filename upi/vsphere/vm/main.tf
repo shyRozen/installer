@@ -26,6 +26,13 @@ resource "vsphere_virtual_machine" "vm" {
 
   clone {
     template_uuid = var.template_uuid
+    customize {
+      network_interface {
+        ipv4_address = "ip=${each.value}::${cidrhost(var.machine_cidr, 1)}"
+        ipv4_netmask = 23
+      }
+      ipv4_gateway = "10.1.161.254"
+    }
   }
   
   cdrom {
