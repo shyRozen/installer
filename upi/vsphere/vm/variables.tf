@@ -63,3 +63,8 @@ variable "iso_file" {
   type = string
 }
 
+variable "cluster_id" {
+  type = string
+}
+
+
