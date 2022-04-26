@@ -28,8 +28,8 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = var.template_uuid
     customize {
       linux_options {
-        host_name = var.name
-        domain    = "redhat.com"
+        host_name = var.cluster_id
+        domain    = var.cluster_domain
       }
       network_interface {
         ipv4_address = "ip=${each.value}::${cidrhost(var.machine_cidr, 1)}"
