@@ -28,7 +28,7 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = var.template_uuid
     customize {
       linux_options {
-        host_name = "hello-world"
+        host_name = name
         domain    = "redhat.com"
       }
       network_interface {
