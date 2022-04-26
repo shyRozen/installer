@@ -145,6 +145,10 @@ variable "iso_file" {
   type = string
 }
 
+variable "ip_address" {
+  type = string
+}
+
 /*
 
 //////////
