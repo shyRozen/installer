@@ -146,7 +146,7 @@ variable "iso_file" {
 }
 
 variable "ip_address" {
-  type = string
+  type = list(string)
 }
 
 /*
