@@ -1,6 +1,6 @@
 resource "vsphere_virtual_machine" "vm" {
   for_each = var.hostnames_ip_addresses
-
+  
   name = element(split(".", each.key), 0)
 
   resource_pool_id = var.resource_pool_id
@@ -32,7 +32,7 @@ resource "vsphere_virtual_machine" "vm" {
         domain    = var.cluster_domain
       }
       network_interface {
-        ipv4_address = var.ip_address
+        ipv4_address = each.value
         ipv4_netmask = 23
       }
       ipv4_gateway = "10.1.161.254"
