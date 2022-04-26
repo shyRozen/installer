@@ -244,7 +244,6 @@ module "control_plane_vm" {
   cluster_domain = var.cluster_domain
   machine_cidr   = var.machine_cidr
   cluster_id = var.cluster_id
-  ip_address = module.ipam_control_plane.ip_addresses
   num_cpus      = var.control_plane_num_cpus
   memory        = var.control_plane_memory
   dns_addresses = var.vm_dns_addresses
