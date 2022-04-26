@@ -68,6 +68,6 @@ variable "cluster_id" {
 }
 
 variable "ip_address" {
-  type = string
+  type = list(string)
 }
 
