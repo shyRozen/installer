@@ -32,7 +32,7 @@ resource "vsphere_virtual_machine" "vm" {
         domain    = var.cluster_domain
       }
       network_interface {
-        ipv4_address = "ip=${each.value}::${cidrhost(var.machine_cidr, 1)}"
+        ipv4_address = var.ip_address
         ipv4_netmask = 23
       }
       ipv4_gateway = "10.1.161.254"
