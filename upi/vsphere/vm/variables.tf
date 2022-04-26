@@ -67,7 +67,4 @@ variable "cluster_id" {
   type = string
 }
 
-variable "ip_address" {
-  type = string
-}
 
