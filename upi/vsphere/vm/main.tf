@@ -26,17 +26,6 @@ resource "vsphere_virtual_machine" "vm" {
 
   clone {
     template_uuid = var.template_uuid
-     customize {
-      linux_options {
-        host_name = var.cluster_id
-        domain    = var.cluster_domain
-      }
-      network_interface {
-        ipv4_address = "${each.value}"
-        ipv4_netmask = "23"
-      }
-      ipv4_gateway = "10.1.161.254"
-    } 
   }
   
   cdrom {
