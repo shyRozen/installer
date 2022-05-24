@@ -144,7 +144,7 @@ module "lb_a_records" {
 module "control_plane_a_records" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.control_plane_fqdns, var.vm_ip_address)
+  records = zipmap(local.control_plane_fqdns, [var.vm_ip_address])
 
 }
 
@@ -152,13 +152,13 @@ module "control_plane_a_records" {
 module "api_a_record" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.api_fqdn, var.vm_ip_address)
+  records = zipmap(local.api_fqdn, [var.vm_ip_address])
 }
 
 module "apps_a_record" {
           source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.apps_fqdn, var.vm_ip_address)
+  records = zipmap(local.apps_fqdn, [var.vm_ip_address])
 }
 
 /*module "compute_a_records" {
@@ -228,7 +228,7 @@ module "control_plane_vm" {
   // replicate the records.
   hostnames_ip_addresses = zipmap(
     module.control_plane_a_records.fqdns,
-    var.vm_ip_address
+    [var.vm_ip_address]
   )
 
 //  ignition = file(var.control_plane_ignition_path)
