@@ -71,7 +71,7 @@ module "ipam_bootstrap" {
   static_ip_addresses = var.bootstrap_ip_address == "" ? [] : [var.bootstrap_ip_address]
 
 }*/
-
+/*
 // Request from phpIPAM a new IP addresses for the control-plane nodes
 module "ipam_control_plane" {
   source              = "./ipam"
@@ -81,6 +81,7 @@ module "ipam_control_plane" {
   machine_cidr        = var.machine_cidr
   static_ip_addresses = var.control_plane_ip_addresses
 }
+*/  
 /*
 
 // Request from phpIPAM a new IP addresses for the compute nodes
@@ -143,7 +144,7 @@ module "lb_a_records" {
 module "control_plane_a_records" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.control_plane_fqdns, module.ipam_control_plane.ip_addresses)
+  records = zipmap(local.control_plane_fqdns, var.vm_ip_address)
 
 }
 
@@ -151,13 +152,13 @@ module "control_plane_a_records" {
 module "api_a_record" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.api_fqdn, module.ipam_control_plane.ip_addresses)
+  records = zipmap(local.api_fqdn, var.vm_ip_address)
 }
 
 module "apps_a_record" {
           source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.apps_fqdn, module.ipam_control_plane.ip_addresses)
+  records = zipmap(local.apps_fqdn, var.vm_ip_address)
 }
 
 /*module "compute_a_records" {
@@ -227,7 +228,7 @@ module "control_plane_vm" {
   // replicate the records.
   hostnames_ip_addresses = zipmap(
     module.control_plane_a_records.fqdns,
-    module.ipam_control_plane.ip_addresses
+    var.vm_ip_address
   )
 
 //  ignition = file(var.control_plane_ignition_path)
