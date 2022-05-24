@@ -7,6 +7,7 @@ locals {
   api_lb_fqdns        = formatlist("%s.%s", ["control-plane0","api", "api-int", "*.apps"], var.cluster_domain)
   api_fqdn = ["api.${var.cluster_domain}"]
   apps_fqdn = ["*apps.${var.cluster_domain}"]
+  api_int_fqdn = ["api-int.${var.cluster_domain}"]
   control_plane_fqdns = [for idx in range(var.control_plane_count) : "control-plane-${idx}.${var.cluster_domain}"]
 }
 
@@ -159,6 +160,12 @@ module "apps_a_record" {
           source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
   records = zipmap(local.apps_fqdn, [var.vm_ip_address])
+}
+
+module "api_int_a_record" {
+          source  = "./host_a_record"
+  zone_id = module.dns_cluster_domain.zone_id
+  records = zipmap(local.api_int_fqdn, [var.vm_ip_address])
 }
 
 /*module "compute_a_records" {
