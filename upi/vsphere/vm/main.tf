@@ -2,7 +2,7 @@ resource "vsphere_virtual_machine" "vm" {
   for_each = var.hostnames_ip_addresses
   
   name = element(split(".", each.key), 0)
-
+  hostname = "control-plane-0"
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
   num_cpus         = var.num_cpus
