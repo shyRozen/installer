@@ -1,7 +1,7 @@
 # force local ignition provider binary
-provider "ignition" {
-  version = "0.0.0"
-}
+#provider "ignition" {
+#  version = "0.0.0"
+#}
 
 locals {
   api_lb_fqdns        = formatlist("%s.%s", ["control-plane0","api", "api-int", "*.apps"], var.cluster_domain)
