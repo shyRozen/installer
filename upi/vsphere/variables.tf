@@ -149,12 +149,6 @@ variable "vm_ip_address" {
   type = string
 }
 
-variable "folder" {
-  type = string
-}
-
-
-
 /*
 
 //////////
