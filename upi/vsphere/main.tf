@@ -264,7 +264,7 @@ module "compute_vm" {
 
   hostnames_ip_addresses = zipmap(
     module.compute_a_records.fqdns,
-    [var.workers_ip_list]
+    [var.compute_ip_addresses]
   )
 
   ignition = file(var.compute_ignition_path)
