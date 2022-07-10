@@ -280,7 +280,7 @@ module "compute_vm" {
   iso_file = var.iso_file
   cluster_domain = var.cluster_domain
   machine_cidr   = var.machine_cidr
-
+  cluster_id = var.cluster_id
   num_cpus      = var.compute_num_cpus
   memory        = var.compute_memory
   dns_addresses = var.vm_dns_addresses
