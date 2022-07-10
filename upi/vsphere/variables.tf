@@ -149,7 +149,7 @@ variable "vm_ip_address" {
   type = string
 }
 
-/*
+
 
 //////////
 // compute machine variables
@@ -179,7 +179,7 @@ variable "compute_num_cpus" {
   type    = string
   default = "4"
 }
-*/
+
 
 variable "ssh_public_key_path" {
   type    = string
