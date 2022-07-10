@@ -247,7 +247,7 @@ module "control_plane_vm" {
   network_id            = data.vsphere_network.network.id
   folder_id             = vsphere_folder.folder.path
   guest_id              = data.vsphere_virtual_machine.template.guest_id
-  template_uuid         = data.vsphere_virtual_machine.template.id
+  template_uuid         = var.vm_template
   disk_thin_provisioned = data.vsphere_virtual_machine.template.disks[0].thin_provisioned
   iso_file = var.iso_file
   cluster_domain = var.cluster_domain
@@ -275,7 +275,7 @@ module "compute_vm" {
   network_id            = data.vsphere_network.network.id
   folder_id             = vsphere_folder.folder.path
   guest_id              = data.vsphere_virtual_machine.template.guest_id
-  template_uuid         = data.vsphere_virtual_machine.template.id
+  template_uuid         = var.vm_template
   disk_thin_provisioned = data.vsphere_virtual_machine.template.disks[0].thin_provisioned
   iso_file = var.worker_iso_file
   cluster_domain = var.cluster_domain
