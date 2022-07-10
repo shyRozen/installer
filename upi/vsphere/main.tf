@@ -9,6 +9,7 @@ locals {
   apps_fqdn = ["*.apps.${var.cluster_domain}"]
   api_int_fqdn = ["api-int.${var.cluster_domain}"]
   control_plane_fqdns = [for idx in range(var.control_plane_count) : "sno-edge-${idx}.${var.cluster_domain}"]
+  compute_fqdns       = [for idx in range(var.compute_count) : "sno-worker-${idx}.${var.cluster_domain}"]
 }
 
 provider "vsphere" {
@@ -168,11 +169,11 @@ module "api_int_a_record" {
   records = zipmap(local.api_int_fqdn, [var.vm_ip_address])
 }
 
-/*module "compute_a_records" {
+module "compute_a_records" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.compute_fqdns, module.ipam_compute.ip_addresses)
-}*/
+  records = zipmap(local.compute_fqdns, [var.workers_ip_list])
+}
 
 /*module "lb_vm" {
   source = "./vm"
@@ -257,13 +258,13 @@ module "control_plane_vm" {
   dns_addresses = var.vm_dns_addresses
 }
 
-/*
+
 module "compute_vm" {
   source = "./vm"
 
   hostnames_ip_addresses = zipmap(
     module.compute_a_records.fqdns,
-    module.ipam_compute.ip_addresses
+    [var.workers_ip_list]
   )
 
   ignition = file(var.compute_ignition_path)
@@ -276,7 +277,7 @@ module "compute_vm" {
   guest_id              = data.vsphere_virtual_machine.template.guest_id
   template_uuid         = data.vsphere_virtual_machine.template.id
   disk_thin_provisioned = data.vsphere_virtual_machine.template.disks[0].thin_provisioned
-
+  iso_file = var.iso_file
   cluster_domain = var.cluster_domain
   machine_cidr   = var.machine_cidr
 
@@ -284,4 +285,4 @@ module "compute_vm" {
   memory        = var.compute_memory
   dns_addresses = var.vm_dns_addresses
 }
-*/
+
