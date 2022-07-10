@@ -180,6 +180,10 @@ variable "compute_num_cpus" {
   default = "4"
 }
 
+variable "worker_iso_file" {
+  type = string
+}
+
 
 variable "ssh_public_key_path" {
   type    = string
