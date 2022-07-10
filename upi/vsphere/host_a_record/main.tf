@@ -5,5 +5,5 @@ resource "aws_route53_record" "a_record" {
   ttl     = "60"
   zone_id = var.zone_id
   name    = each.key
-  records = [each.value]
+  records = each.value
 }
