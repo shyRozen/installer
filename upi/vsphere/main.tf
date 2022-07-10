@@ -172,7 +172,7 @@ module "api_int_a_record" {
 module "compute_a_records" {
   source  = "./host_a_record"
   zone_id = module.dns_cluster_domain.zone_id
-  records = zipmap(local.compute_fqdns, [var.workers_ip_list])
+  records = zipmap(local.compute_fqdns, [var.compute_ip_addresses])
 }
 
 /*module "lb_vm" {
@@ -236,7 +236,7 @@ module "control_plane_vm" {
   // replicate the records.
   hostnames_ip_addresses = zipmap(
     module.control_plane_a_records.fqdns,
-    [var.vm_ip_address]
+    [var.compute_ip_addresses]
   )
 
 //  ignition = file(var.control_plane_ignition_path)
