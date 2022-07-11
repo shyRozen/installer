@@ -236,7 +236,7 @@ module "control_plane_vm" {
   // replicate the records.
   hostnames_ip_addresses = zipmap(
     module.control_plane_a_records.fqdns,
-    var.compute_ip_addresses
+    [var.vm_ip_address]
   )
 
 //  ignition = file(var.control_plane_ignition_path)
