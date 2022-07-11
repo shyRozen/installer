@@ -154,12 +154,12 @@ variable "vm_ip_address" {
 //////////
 // compute machine variables
 //////////
-
+/*
 variable "compute_ignition_path" {
   type    = string
   default = "./worker.ign"
 }
-
+*/
 variable "compute_count" {
   type    = string
   default = "3"
