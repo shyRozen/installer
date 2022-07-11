@@ -267,7 +267,7 @@ module "compute_vm" {
     var.compute_ip_addresses
   )
 
-  ignition = file(var.compute_ignition_path)
+  //ignition = file(var.compute_ignition_path)
 
   resource_pool_id      = vsphere_resource_pool.resource_pool.id
   datastore_id          = data.vsphere_datastore.datastore.id
